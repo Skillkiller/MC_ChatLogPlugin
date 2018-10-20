@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Chatlog">
+    <output-path>$PROJECT_DIR$/out/artifacts/Chatlog</output-path>
+    <root id="archive" name="Chatlog.jar">
+      <element id="module-output" name="MC_ChatLogPlugin" />
+    </root>
+  </artifact>
+</component>

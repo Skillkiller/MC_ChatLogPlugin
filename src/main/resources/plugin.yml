@@ -1,0 +1,15 @@
+name: ChatLog
+version: 1.0.0
+description: Chatlog Plugin
+
+author: Skillkiller
+website: https://skillkiller.de
+depend: []
+
+main: de.skillkiller.chatlog.main.Core
+
+commands:
+  chatlog:
+    description: Erstelle einen Chatlog
+    aliases: [log, chat, l]
+usage: /chatlog
