@@ -47,9 +47,9 @@ public class LogHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        database.executeQuery("create table if not exists config\n" +
+        database.executeQuery("create table config\n" +
                 "(\n" +
-                "  server     varchar(32) not null,\n" +
+                "  server     varchar(32) primary key,\n" +
                 "  timebefore bigint      not null,\n" +
                 "  timeafter  bigint      not null\n" +
                 ");");
