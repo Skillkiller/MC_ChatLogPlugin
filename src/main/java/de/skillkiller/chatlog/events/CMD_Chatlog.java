@@ -4,22 +4,29 @@ import de.skillkiller.chatlog.database.LogHandler;
 import de.skillkiller.chatlog.main.Core;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.Date;
 import java.util.logging.Logger;
 
-public class Command implements CommandExecutor {
+public class CMD_Chatlog implements CommandExecutor {
 
     Logger logger;
     LogHandler logHandler;
 
-    public Command(Core core) {
+    public CMD_Chatlog(Core core) {
         this.logger = core.logger;
         logHandler = core.logHandler;
     }
 
     @Override
     public boolean onCommand(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+
+        if (commandSender instanceof Player) {
+            logHandler.addMessage(((Player) commandSender).getUniqueId(), "/chatlog");
+        } else {
+            logHandler.addPluginMessage("/chatlog");
+        }
         if (!logHandler.needTimeCode()) {
             commandSender.sendMessage("Code: " + logHandler.createRestartCode());
         } else {

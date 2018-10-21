@@ -12,4 +12,7 @@ commands:
   chatlog:
     description: Erstelle einen Chatlog
     aliases: [log, chat, l]
-usage: /chatlog
+    usage: /chatlog
+  timeset:
+    description: Stellt den Zeitbereicht fur den Timecode ein
+    usage: /timeset [Time before in Seconds] [Time after in Seconds]

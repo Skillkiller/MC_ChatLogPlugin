@@ -2,7 +2,8 @@ package de.skillkiller.chatlog.main;
 
 import de.skillkiller.chatlog.database.LogHandler;
 import de.skillkiller.chatlog.database.Sql;
-import de.skillkiller.chatlog.events.Command;
+import de.skillkiller.chatlog.events.CMD_Chatlog;
+import de.skillkiller.chatlog.events.CMD_Timeset;
 import de.skillkiller.chatlog.events.PlayerChat;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -35,7 +36,8 @@ public class Core extends JavaPlugin {
 
         PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerChat(this), this);
-        this.getCommand("chatlog").setExecutor(new Command(this));
+        this.getCommand("chatlog").setExecutor(new CMD_Chatlog(this));
+        this.getCommand("timeset").setExecutor(new CMD_Timeset(this));
     }
 
     @Override

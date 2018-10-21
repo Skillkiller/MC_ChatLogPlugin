@@ -232,5 +232,39 @@ public class LogHandler {
         return null;
     }
 
+    public boolean setTimeShift(long timebefore, long timeafter) {
+        if (needTimeCode()) {
+            return updateTimeShift(timebefore, timeafter);
+        } else {
+            return insertTimeShift(timebefore, timeafter);
+        }
+    }
+
+    private boolean insertTimeShift(long timebefore, long timeafter) {
+        try (PreparedStatement preparedStatement = database.getConnection().prepareStatement("INSERT INTO config (server, timebefore, timeafter) VALUES (?, ?, ?);")) {
+            preparedStatement.setString(1, Bukkit.getServerName());
+            preparedStatement.setLong(2, timebefore);
+            preparedStatement.setLong(3, timeafter);
+
+            return preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean updateTimeShift(long timebefore, long timeafter) {
+        try (PreparedStatement preparedStatement = database.getConnection().prepareStatement("UPDATE config SET timebefore = ?, timeafter = ? WHERE server = ?;")) {
+            preparedStatement.setLong(1, timebefore);
+            preparedStatement.setLong(2, timeafter);
+            preparedStatement.setString(3, Bukkit.getServerName());
+
+            return preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
