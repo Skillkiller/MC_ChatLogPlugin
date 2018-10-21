@@ -240,6 +240,18 @@ public class LogHandler {
         }
     }
 
+    public boolean removeTimeShift() {
+        if (needTimeCode()) {
+            try (PreparedStatement preparedStatement = database.getConnection().prepareStatement("DELETE FROM config WHERE server = ?")) {
+                preparedStatement.setString(1, Bukkit.getServerName());
+                return preparedStatement.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else return true;
+    }
+
     private boolean insertTimeShift(long timebefore, long timeafter) {
         try (PreparedStatement preparedStatement = database.getConnection().prepareStatement("INSERT INTO config (server, timebefore, timeafter) VALUES (?, ?, ?);")) {
             preparedStatement.setString(1, Bukkit.getServerName());

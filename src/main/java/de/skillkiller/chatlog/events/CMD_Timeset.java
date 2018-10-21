@@ -26,11 +26,15 @@ public class CMD_Timeset implements CommandExecutor {
             long timebefore = Long.parseLong(args[0]);
             long timeafter = Long.parseLong(args[1]);
 
-            logHandler.setTimeShift(timebefore, timeafter);
-
-            commandSender.sendMessage("TimeBefore: " + timebefore);
-            commandSender.sendMessage("TimeAfter: " + timeafter);
-            commandSender.sendMessage("Time set!");
+            if (timebefore == 0 && timeafter == 0) {
+                logHandler.removeTimeShift();
+                commandSender.sendMessage("Timeshift entfernt. Restartcodes werden verwendet");
+            } else {
+                logHandler.setTimeShift(timebefore, timeafter);
+                commandSender.sendMessage("TimeBefore: " + timebefore);
+                commandSender.sendMessage("TimeAfter: " + timeafter);
+                commandSender.sendMessage("Time set!");
+            }
         } catch (NumberFormatException e) {
             commandSender.sendMessage("Es dürfen nur Ganzzahlen angeben werden!");
         }
