@@ -16,3 +16,5 @@ commands:
   timeset:
     description: Stellt den Zeitbereicht fur den Timecode ein
     usage: /timeset [Time before in Seconds] [Time after in Seconds]
+    permission: chatlog.time
+    permission-message: Deine Rechte reichen nicht aus
